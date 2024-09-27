@@ -2,7 +2,7 @@
 import { useDatePicker } from '@/context/DatePickerContext';
 import React from 'react';
 
-interface GenerateDatesProps {
+interface DatePickerDatesProps {
   datesToDisplay: string[];
 }
 
@@ -13,7 +13,7 @@ const formatDate = (date: Date) => {
   return `${day}-${month}-${year}`;
 };
 
-const GenerateDates: React.FC<GenerateDatesProps> = ({ datesToDisplay }) => {
+const DatePickerDates: React.FC<DatePickerDatesProps> = ({ datesToDisplay }) => {
   const { startDate, endDate } = useDatePicker();
 
   return (
@@ -44,4 +44,4 @@ const GenerateDates: React.FC<GenerateDatesProps> = ({ datesToDisplay }) => {
   );
 };
 
-export default GenerateDates;
+export default DatePickerDates;

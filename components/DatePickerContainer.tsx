@@ -2,27 +2,83 @@
 import { useDatePicker } from '@/context/DatePickerContext';
 import React from 'react';
 import { FaRegCalendarAlt } from 'react-icons/fa';
-import DatePickerPreview from './DatePickerPreview';
-import CalendarPreview from './CalendarPreview';
+import DatePicker from './DatePickerCalendar';
+import CalendarPreview from './DatePickerRecurrence';
+import DatePickerRecurrence from './DatePickerRecurrence';
 
-const DatePickerContainer = () => {
-  const { toggle, setToggle, buttonText } = useDatePicker();
+interface DatePickerContainerProps {
+  bgContainer?: 'red' | 'blue' | 'green' | 'yellow' | 'gray' | 'default';
+  textContainer?: 'white' | 'black' | 'gray' | 'red' | 'blue' | 'green';
+  buttonText?: string;
+  children: React.ReactNode;
+}
+
+const DatePickerContainer: React.FC<DatePickerContainerProps> = ({
+  bgContainer = 'default',
+  textContainer = 'black',
+  buttonText,
+  children,
+}) => {
+  const { toggle, setToggle, buttonText: defaultButtonText } = useDatePicker();
+
+  const getBackgroundColor = () => {
+    switch (bgContainer) {
+      case 'red':
+        return 'bg-red-500';
+      case 'blue':
+        return 'bg-blue-500';
+      case 'green':
+        return 'bg-green-500';
+      case 'yellow':
+        return 'bg-yellow-500';
+      case 'gray':
+        return 'bg-gray-500';
+      default:
+        return 'bg-stone-100';
+    }
+  };
+
+  const getTextColor = () => {
+    switch (textContainer) {
+      case 'white':
+        return 'text-white';
+      case 'black':
+        return 'text-black';
+      case 'gray':
+        return 'text-gray-700';
+      case 'red':
+        return 'text-red-500';
+      case 'blue':
+        return 'text-blue-500';
+      case 'green':
+        return 'text-green-500';
+      default:
+        return 'text-black';
+    }
+  };
+
   return (
-    <div className="">
+    <div className="date-picker-container">
       <div className="relative">
         <button
-          className="flex gap-14 p-4 px-4 border rounded-lg shadow-lg"
+          className={`p-4 rounded-lg shadow flex items-center gap-10 ${getBackgroundColor()} ${getTextColor()}`}
           onClick={() => setToggle(!toggle)}
         >
-          <span className="text-md font-normal">{buttonText}</span>
+          <span className="text-md font-semibold">
+            {buttonText || defaultButtonText}
+          </span>
           <FaRegCalendarAlt />
         </button>
-        {toggle && (
-          <div className="absolute border p-5 top-[5rem] rounded-xl bg-gray-100 w-[600px] shadow-lg space-y-5 transition-all">
-            <DatePickerPreview />
-            <CalendarPreview />
-          </div>
-        )}
+
+        <div
+          className={`absolute top-[4rem] w-[600px] p-5 border rounded-xl bg-gray-100 shadow-lg space-y-5 transition-all duration-300 ease-in-out ${
+            toggle
+              ? 'opacity-100 transform scale-100'
+              : 'opacity-0 transform scale-95 pointer-events-none'
+          }`}
+        >
+          {children}
+        </div>
       </div>
     </div>
   );

@@ -1,14 +1,16 @@
 import React from 'react';
 
-interface GenerateMonthsProps {
+interface DatePickerYearsProps {
   datesToDisplay: string[];
 }
 
-const GenerateMonths: React.FC<GenerateMonthsProps> = ({ datesToDisplay }) => {
+const DatePickerYears: React.FC<DatePickerYearsProps> = ({
+  datesToDisplay,
+}) => {
   return (
     <div>
-      <h4 className="text-lg font-semibold text-gray-700">Month(s):</h4>
-      <ul className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-3 text-gray-600">
+      <h4 className="text-lg font-semibold text-gray-700">Year(s):</h4>
+      <ul className="grid grid-cols-2 sm:grid-cols-5 gap-4 mt-3 text-gray-600">
         {datesToDisplay.length > 0 ? (
           datesToDisplay.map((date, index) => (
             <li
@@ -19,13 +21,13 @@ const GenerateMonths: React.FC<GenerateMonthsProps> = ({ datesToDisplay }) => {
             </li>
           ))
         ) : (
-          <li className="">
-            <span className="text-gray-500 text-ms">No month(s) generated</span>
+          <li>
+            <span className="text-gray-500">No year(s) generated</span>
           </li>
-        )}{' '}
+        )}
       </ul>
     </div>
   );
 };
 
-export default GenerateMonths;
+export default DatePickerYears;

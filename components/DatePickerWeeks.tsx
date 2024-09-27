@@ -1,13 +1,15 @@
 'use client';
 
 import { useDatePicker } from '@/context/DatePickerContext';
-import React, { useState } from 'react';
+import React from 'react';
 
-interface GenerateWeeksProps {
+interface DatePickerWeeksProps {
   datesToDisplay: string[];
 }
 
-const GenerateWeeks: React.FC<GenerateWeeksProps> = ({ datesToDisplay }) => {
+const DatePickerWeeks: React.FC<DatePickerWeeksProps> = ({
+  datesToDisplay,
+}) => {
   const { setSelectedDays } = useDatePicker();
 
   const handleDay = (day: string) => {
@@ -30,7 +32,7 @@ const GenerateWeeks: React.FC<GenerateWeeksProps> = ({ datesToDisplay }) => {
           datesToDisplay.map((date, index) => (
             <li
               key={index}
-              className="bg-gray-200 text-gray-700 hover:bg-gray-300 focus:bg-gray-300 px-4 py-2 rounded-md transition-colors duration-300"
+              className="bg-gray-200 text-gray-700 hover:bg-gray-300 focus:bg-gray-300 px-4 py-2 rounded-md transition-colors duration-300 cursor-pointer"
               onClick={() => handleDay(date)}
             >
               <span className="text-gray-800 block text-center">{date}</span>
@@ -46,4 +48,4 @@ const GenerateWeeks: React.FC<GenerateWeeksProps> = ({ datesToDisplay }) => {
   );
 };
 
-export default GenerateWeeks;
+export default DatePickerWeeks;
