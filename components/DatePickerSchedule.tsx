@@ -49,6 +49,7 @@ const DatePickerSchedule: React.FC<DatePickerScheduleProps> = ({
     setToggle,
   } = useDatePicker();
 
+  // To customize background color
   const getBackgroundColor = () => {
     switch (bgContainer) {
       case 'red':
@@ -66,6 +67,7 @@ const DatePickerSchedule: React.FC<DatePickerScheduleProps> = ({
     }
   };
 
+  // To customize text color
   const getTextColor = () => {
     switch (textColor) {
       case 'white':
@@ -85,6 +87,7 @@ const DatePickerSchedule: React.FC<DatePickerScheduleProps> = ({
     }
   };
 
+  // To handle every inputs
   const handleDayChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedWeek((prevDay) => ({ ...prevDay, day: e.target.value }));
   };
@@ -185,12 +188,12 @@ const DatePickerSchedule: React.FC<DatePickerScheduleProps> = ({
     <div
       className={`p-4 lg:p-6 ${getBackgroundColor()} rounded-lg max-w-2xl mx-auto`}
     >
+      {/* To Repeat value */}
       <div>
         <label
           htmlFor="repeat"
           className={`text-lg font-semibold ${getTextColor()} mr-4`}
         >
-          {' '}
           Repeat:
         </label>
         <input
@@ -201,10 +204,11 @@ const DatePickerSchedule: React.FC<DatePickerScheduleProps> = ({
           max={datesToDisplay.length > 0 ? datesToDisplay.length : 1}
           placeholder="repeat"
           onChange={(e) => setRepeat(Number(e.target.value))}
-          className="h-10 w-16 px-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className={`h-10 w-16 px-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${getTextColor()}`}
         />
       </div>
 
+      {/* daily */}
       <div className="grid gap-4">
         <div>
           {recurrence === 'daily' && (
@@ -216,6 +220,7 @@ const DatePickerSchedule: React.FC<DatePickerScheduleProps> = ({
           )}
         </div>
 
+        {/* weeks */}
         <div>
           {recurrence === 'weekly' && (
             <h3
@@ -230,6 +235,7 @@ const DatePickerSchedule: React.FC<DatePickerScheduleProps> = ({
             </h3>
           )}
 
+          {/* months */}
           {recurrence === 'monthly' && (
             <h3
               className={`flex lg:items-center font-semibold py-3  ${getTextColor()}`}
@@ -264,6 +270,7 @@ const DatePickerSchedule: React.FC<DatePickerScheduleProps> = ({
             </h3>
           )}
 
+          {/* years */}
           {recurrence === 'yearly' && (
             <div className={`space-y-4  ${getTextColor()}`}>
               <div className="flex items-center justify-between">
@@ -288,6 +295,8 @@ const DatePickerSchedule: React.FC<DatePickerScheduleProps> = ({
                   {trackButtonLabel}{' '}
                 </button>
               </div>
+
+              {/* Track option */}
               {toggleYearNotification && (
                 <div className="space-y-5">
                   <div className="flex items-center space-x-3">
@@ -339,6 +348,7 @@ const DatePickerSchedule: React.FC<DatePickerScheduleProps> = ({
                     </label>
                   </div>
 
+                  {/* Track using specific day in month */}
                   <div className="flex items-center space-x-3">
                     <input
                       type="radio"
@@ -382,6 +392,7 @@ const DatePickerSchedule: React.FC<DatePickerScheduleProps> = ({
           )}
         </div>
 
+        {/* To handling save and reset button */}
         <div className="flex items-center gap-4">
           <button
             onClick={onSave || handleButtonText}

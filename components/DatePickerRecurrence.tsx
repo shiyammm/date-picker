@@ -32,7 +32,8 @@ const DatePickerRecurrence = ({ children }: { children: React.ReactNode }) => {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">{children}</div>
       </div>
 
-      <div className="">
+      {/* Rendering components based on recurrence */}
+      <div>
         {recurrence === 'daily' && (
           <DatePickerDates datesToDisplay={datesToDisplay} />
         )}

@@ -18,6 +18,7 @@ const DatePickerContainer: React.FC<DatePickerContainerProps> = ({
 }) => {
   const { toggle, setToggle, buttonText: defaultButtonText } = useDatePicker();
 
+  // To customize the background color
   const getBackgroundColor = () => {
     switch (bgContainer) {
       case 'red':
@@ -35,6 +36,7 @@ const DatePickerContainer: React.FC<DatePickerContainerProps> = ({
     }
   };
 
+    // To customize the text color
   const getTextColor = () => {
     switch (textColor) {
       case 'white':

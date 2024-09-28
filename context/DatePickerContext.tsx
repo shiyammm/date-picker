@@ -27,6 +27,7 @@ export const DatePickerProvider = ({
   initialSelectedDays?: string[];
   initialSelectedWeek?: SelectedWeekType;
 }) => {
+  // States
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
   const [recurrence, setRecurrence] =
@@ -59,6 +60,7 @@ export const DatePickerProvider = ({
     month: '',
   });
 
+  // To reset the values
   const handleReset = () => {
     setStartDate(null);
     setEndDate(null);
@@ -69,6 +71,7 @@ export const DatePickerProvider = ({
     setSelectedWeek(initialSelectedWeek);
   };
 
+  // To format date in dd-MM-yyyy format
   const formatDate = (date: Date) => format(date, 'dd-MM-yyyy');
 
   const handleDay = (day: string) => {
@@ -81,7 +84,7 @@ export const DatePickerProvider = ({
     });
   };
 
-  // Function to generate daily dates
+  // To generate daily dates
   const generateDailyDates = () => {
     if (!startDate || !endDate) return [];
 
@@ -95,7 +98,7 @@ export const DatePickerProvider = ({
     return Array.from(dates);
   };
 
-  // Function to generate weekly dates
+  // To generate weekly dates
   const generateWeeklyDays = () => {
     if (!startDate || !endDate) return [];
 
@@ -110,7 +113,7 @@ export const DatePickerProvider = ({
     return Array.from(dates);
   };
 
-  // Function to generate monthly dates
+  // To generate monthly dates
   const generateMonthlyMonths = () => {
     if (!startDate || !endDate) return [];
 
@@ -125,6 +128,7 @@ export const DatePickerProvider = ({
     return Array.from(dates);
   };
 
+    // To generate yearly dates
   const generateYearlyYears = () => {
     if (!startDate || !endDate) return [];
 
@@ -139,6 +143,7 @@ export const DatePickerProvider = ({
     return Array.from(dates);
   };
 
+  // Combine all the date to get all the values using single function
   const getDatesToDisplay = () => {
     switch (recurrence) {
       case 'daily':
@@ -154,6 +159,7 @@ export const DatePickerProvider = ({
     }
   };
 
+  // Generated Dates
   const datesToDisplay = getDatesToDisplay();
 
   return (

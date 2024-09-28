@@ -10,7 +10,7 @@ interface DatePickerCalendarProps {
   endDateLabel?: string;
   dateFormat?: string;
   bgContainer?: string;
-  textContainer?: string;
+  textColor?: string;
 }
 
 const DatePickerCalendar: React.FC<DatePickerCalendarProps> = ({
@@ -20,10 +20,11 @@ const DatePickerCalendar: React.FC<DatePickerCalendarProps> = ({
   endDateLabel = 'End Date',
   dateFormat = 'yyyy-MM-dd',
   bgContainer = 'gray',
-  textContainer = 'black',
+  textColor = 'black',
 }) => {
   const { startDate, setStartDate, endDate, setEndDate } = useDatePicker();
 
+  // To customize the background color
   const getBackgroundColor = () => {
     switch (bgContainer) {
       case 'red':
@@ -41,8 +42,9 @@ const DatePickerCalendar: React.FC<DatePickerCalendarProps> = ({
     }
   };
 
+    // To customize the text color
   const getTextColor = () => {
-    switch (textContainer) {
+    switch (textColor) {
       case 'white':
         return 'text-white';
       case 'black':
@@ -60,15 +62,18 @@ const DatePickerCalendar: React.FC<DatePickerCalendarProps> = ({
     }
   };
 
+  // To handle the start date
   const handleStartDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setStartDate(e.target.value ? new Date(e.target.value) : null);
     setEndDate(null);
   };
 
+    // To handle the start date
   const handleEndDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEndDate(e.target.value ? new Date(e.target.value) : null);
   };
 
+  
   const formatDateForInput = (
     date: Date | null,
     formatString: string = 'yyyy-MM-dd',

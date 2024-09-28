@@ -3,11 +3,12 @@
 import { useDatePicker } from '@/context/DatePickerContext';
 import React from 'react';
 
-interface DatePickerControlProps {
+interface DatePickerControls {
   control: 'daily' | 'weekly' | 'monthly' | 'yearly';
 }
 
-const DatePIckerControl: React.FC<DatePickerControlProps> = ({ control }) => {
+// Rendering component based on control values
+const DatePickerControls: React.FC<DatePickerControls> = ({ control }) => {
   const { setRecurrence, recurrence } = useDatePicker();
 
   const handleRecurrenceChange = (
@@ -31,4 +32,4 @@ const DatePIckerControl: React.FC<DatePickerControlProps> = ({ control }) => {
   );
 };
 
-export default DatePIckerControl;
+export default DatePickerControls;
