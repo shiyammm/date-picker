@@ -11,15 +11,15 @@ export default function Home() {
   return (
     <DatePickerProvider initialButtonText="Choose a date range">
       <div className="flex items-center justify-center h-screen">
-        <DatePickerContainer bgContainer="blue" textContainer="white">
-          <DatePickerCalendar />
+        <DatePickerContainer bgContainer="blue" textColor="white">
+          <DatePickerCalendar bgContainer="default" />
           <DatePickerRecurrence>
             <DatePIckerControls control="daily" />
             <DatePIckerControls control="weekly" />
             <DatePIckerControls control="monthly" />
             <DatePIckerControls control="yearly" />
           </DatePickerRecurrence>
-          <DatePickerSchedule />
+          <DatePickerSchedule bgContainer="default" trackButtonLabel="Track" textColor='default'  />
         </DatePickerContainer>
       </div>
     </DatePickerProvider>

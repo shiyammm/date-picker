@@ -10,9 +10,9 @@ interface DatePickerScheduleProps {
   onReset?: () => void;
   primaryColor?: string;
   secondaryColor?: string;
-  bgColor?: string;
-  labelColor?: string;
-  toggleLabelColor?: string;
+  bgContainer?: string;
+  textColor?: string;
+  bgTrackBtn?: string;
 }
 
 const DatePickerSchedule: React.FC<DatePickerScheduleProps> = ({
@@ -21,9 +21,9 @@ const DatePickerSchedule: React.FC<DatePickerScheduleProps> = ({
   trackButtonLabel = 'Track',
   primaryColor = 'bg-blue-500',
   secondaryColor = 'bg-red-500',
-  bgColor = 'bg-gray-50',
-  labelColor = 'text-gray-700',
-  toggleLabelColor = 'bg-green-500',
+  bgContainer = 'stone',
+  textColor = 'black',
+  bgTrackBtn = 'bg-green-500',
   onSave,
   onReset,
 }) => {
@@ -48,6 +48,42 @@ const DatePickerSchedule: React.FC<DatePickerScheduleProps> = ({
     setSpecificDayData,
     setToggle,
   } = useDatePicker();
+
+  const getBackgroundColor = () => {
+    switch (bgContainer) {
+      case 'red':
+        return 'bg-red-500';
+      case 'blue':
+        return 'bg-blue-500';
+      case 'green':
+        return 'bg-green-500';
+      case 'yellow':
+        return 'bg-yellow-500';
+      case 'gray':
+        return 'bg-gray-500';
+      default:
+        return 'bg-stone-100';
+    }
+  };
+
+  const getTextColor = () => {
+    switch (textColor) {
+      case 'white':
+        return 'text-white';
+      case 'black':
+        return 'text-black';
+      case 'gray':
+        return 'text-gray-700';
+      case 'red':
+        return 'text-red-500';
+      case 'blue':
+        return 'text-blue-500';
+      case 'green':
+        return 'text-green-500';
+      default:
+        return 'text-black';
+    }
+  };
 
   const handleDayChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedWeek((prevDay) => ({ ...prevDay, day: e.target.value }));
@@ -146,12 +182,15 @@ const DatePickerSchedule: React.FC<DatePickerScheduleProps> = ({
   };
 
   return (
-    <div className={`p-6 ${bgColor} rounded-lg max-w-2xl mx-auto`}>
+    <div
+      className={`p-4 lg:p-6 ${getBackgroundColor()} rounded-lg max-w-2xl mx-auto`}
+    >
       <div>
         <label
           htmlFor="repeat"
-          className={`text-lg font-semibold ${labelColor} mr-4`}
+          className={`text-lg font-semibold ${getTextColor()} mr-4`}
         >
+          {' '}
           Repeat:
         </label>
         <input
@@ -170,7 +209,7 @@ const DatePickerSchedule: React.FC<DatePickerScheduleProps> = ({
         <div>
           {recurrence === 'daily' && (
             <h3
-              className={`flex items-center font-semibold pt-5 ${labelColor}`}
+              className={`flex items-center font-semibold pt-5  ${getTextColor()}`}
             >
               Every {repeat} day(s)
             </h3>
@@ -180,7 +219,7 @@ const DatePickerSchedule: React.FC<DatePickerScheduleProps> = ({
         <div>
           {recurrence === 'weekly' && (
             <h3
-              className={`flex items-center font-semibold py-3 ${labelColor}`}
+              className={`flex items-center font-semibold py-3  ${getTextColor()}`}
             >
               Every {repeat} week(s)
               {selectedDays.length > 0 && (
@@ -193,12 +232,12 @@ const DatePickerSchedule: React.FC<DatePickerScheduleProps> = ({
 
           {recurrence === 'monthly' && (
             <h3
-              className={`flex items-center font-semibold py-3 ${labelColor}`}
+              className={`flex lg:items-center font-semibold py-3  ${getTextColor()}`}
             >
               Every {repeat} month(s)
-              <div className="px-4 space-x-5">
+              <div className="px-4 lg:space-x-5 ">
                 <select
-                  className="px-3 py-2"
+                  className={`px-3 py-2  ${getTextColor()}`}
                   name="day"
                   id="day"
                   onChange={handleDayChange}
@@ -210,7 +249,7 @@ const DatePickerSchedule: React.FC<DatePickerScheduleProps> = ({
                   ))}
                 </select>
                 <select
-                  className="px-3 py-2"
+                  className={`px-3 py-2  ${getTextColor()}`}
                   name="week"
                   id="week"
                   onChange={handleWeekChange}
@@ -226,7 +265,7 @@ const DatePickerSchedule: React.FC<DatePickerScheduleProps> = ({
           )}
 
           {recurrence === 'yearly' && (
-            <div className={`space-y-4 ${labelColor}`}>
+            <div className={`space-y-4  ${getTextColor()}`}>
               <div className="flex items-center justify-between">
                 <div className="flex gap-4">
                   <h3 className="font-semibold">Every {repeat} year(s)</h3>
@@ -243,7 +282,7 @@ const DatePickerSchedule: React.FC<DatePickerScheduleProps> = ({
                   </h4>
                 </div>
                 <button
-                  className={`px-4 py-2 rounded-md transition-colors duration-300 capitalize ${toggleLabelColor} text-white font-semibold`}
+                  className={`px-4 py-2 rounded-md transition-colors duration-300 capitalize ${bgTrackBtn} text-white font-semibold`}
                   onClick={handleTrackButtonClick}
                 >
                   {trackButtonLabel}{' '}

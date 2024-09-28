@@ -2,20 +2,17 @@
 import { useDatePicker } from '@/context/DatePickerContext';
 import React from 'react';
 import { FaRegCalendarAlt } from 'react-icons/fa';
-import DatePicker from './DatePickerCalendar';
-import CalendarPreview from './DatePickerRecurrence';
-import DatePickerRecurrence from './DatePickerRecurrence';
 
 interface DatePickerContainerProps {
   bgContainer?: 'red' | 'blue' | 'green' | 'yellow' | 'gray' | 'default';
-  textContainer?: 'white' | 'black' | 'gray' | 'red' | 'blue' | 'green';
+  textColor?: 'white' | 'black' | 'gray' | 'red' | 'blue' | 'green';
   buttonText?: string;
   children: React.ReactNode;
 }
 
 const DatePickerContainer: React.FC<DatePickerContainerProps> = ({
   bgContainer = 'default',
-  textContainer = 'black',
+  textColor = 'black',
   buttonText,
   children,
 }) => {
@@ -39,7 +36,7 @@ const DatePickerContainer: React.FC<DatePickerContainerProps> = ({
   };
 
   const getTextColor = () => {
-    switch (textContainer) {
+    switch (textColor) {
       case 'white':
         return 'text-white';
       case 'black':
@@ -71,7 +68,7 @@ const DatePickerContainer: React.FC<DatePickerContainerProps> = ({
         </button>
 
         <div
-          className={`absolute top-[4rem] w-[600px] p-5 border rounded-xl bg-gray-100 shadow-lg space-y-5 transition-all duration-300 ease-in-out ${
+          className={`absolute lg:w-[600px] p-5 border rounded-xl bg-gray-100 shadow-lg space-y-5 transition-all duration-300 ease-in-out ${
             toggle
               ? 'opacity-100 transform scale-100'
               : 'opacity-0 transform scale-95 pointer-events-none'

@@ -11,7 +11,7 @@ const DatePickerRecurrence = ({ children }: { children: React.ReactNode }) => {
   const { startDate, endDate, recurrence, datesToDisplay } = useDatePicker();
 
   return (
-    <div className="space-y-6 p-6 bg-gray-50 rounded-lg max-w-2xl mx-auto">
+    <div className="space-y-6 p-4 lg:p-6 bg-gray-50 rounded-lg max-w-2xl mx-auto">
       <div className="flex justify-between items-center gap-8">
         <span className="text-lg font-semibold text-gray-700">
           Start Date:
@@ -29,7 +29,7 @@ const DatePickerRecurrence = ({ children }: { children: React.ReactNode }) => {
 
       <div className="space-y-4">
         <h2 className="text-lg font-semibold text-gray-700">Recurrences:</h2>
-        <div className="grid grid-cols-4 gap-4">{children}</div>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">{children}</div>
       </div>
 
       <div className="">
